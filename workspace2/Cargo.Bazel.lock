@@ -1,0 +1,35 @@
+{
+  "checksum": "15c8ff031c29faab012d5b57943da8fbec42d643ff39e4373472f29c399f4d1e",
+  "crates": {
+    "bar 0.1.0": {
+      "name": "bar",
+      "version": "0.1.0",
+      "repository": null,
+      "targets": [
+        {
+          "Library": {
+            "crate_name": "bar",
+            "crate_root": "src/lib.rs",
+            "srcs": [
+              "**/*.rs"
+            ]
+          }
+        }
+      ],
+      "library_target_name": "bar",
+      "common_attrs": {
+        "compile_data_glob": [
+          "**"
+        ],
+        "edition": "2021",
+        "version": "0.1.0"
+      },
+      "license": null
+    }
+  },
+  "binary_crates": [],
+  "workspace_members": {
+    "bar 0.1.0": "workspace2/bar"
+  },
+  "conditions": {}
+}

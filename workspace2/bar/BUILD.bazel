@@ -1,8 +1,8 @@
-load("@workspace1_crate_index//:defs.bzl", "aliases", "all_crate_deps")
+load("@workspace2_crate_index//:defs.bzl", "aliases", "all_crate_deps")
 load("@rules_rust//rust:defs.bzl", "rust_library", "rust_test")
 
 rust_library(
-    name = "foo_lib",
+    name = "bar_lib",
     aliases = aliases(),
     edition = "2021",
     srcs = glob(["src/**/*.rs"]),

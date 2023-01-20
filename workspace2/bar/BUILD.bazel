@@ -6,7 +6,9 @@ rust_library(
     aliases = aliases(),
     edition = "2021",
     srcs = glob(["src/**/*.rs"]),
-    deps = all_crate_deps(
+    deps = [
+      "//workspace2/local_vendor/foo:foo_lib_ws2"
+    ] + all_crate_deps(
         normal = True,
     ),
     proc_macro_deps = all_crate_deps(

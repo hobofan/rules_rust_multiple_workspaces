@@ -1,15 +1,41 @@
-load("@workspace1_crate_index//:defs.bzl", "aliases", "all_crate_deps")
+load("@workspace1_crate_index//:defs.bzl", ws1_aliases = "aliases", ws1_all_crate_deps = "all_crate_deps")
+load("@workspace2_crate_index//:defs.bzl", ws2_aliases = "aliases", ws2_all_crate_deps = "all_crate_deps")
 load("@rules_rust//rust:defs.bzl", "rust_library", "rust_test")
 
 rust_library(
     name = "foo_lib",
-    aliases = aliases(),
-    edition = "2021",
     srcs = glob(["src/**/*.rs"]),
-    deps = all_crate_deps(
+    aliases = ws1_aliases(
+        package_name = "workspace1/foo",
+    ),
+    edition = "2021",
+    proc_macro_deps = ws1_all_crate_deps(
+        package_name = "workspace1/foo",
+        proc_macro = True,
+    ),
+    deps = ws1_all_crate_deps(
+        package_name = "workspace1/foo",
         normal = True,
     ),
-    proc_macro_deps = all_crate_deps(
+)
+
+rust_library(
+    name = "foo_lib_ws2",
+    srcs = glob(["src/**/*.rs"]),
+    aliases = ws2_aliases(
+        package_name = "workspace2/local_vendor/foo",
+    ),
+    crate_name = "foo",
+    edition = "2021",
+    proc_macro_deps = ws2_all_crate_deps(
+        package_name = "workspace2/local_vendor/foo",
         proc_macro = True,
+    ),
+    visibility = [
+        "//workspace2/bar:__pkg__",
+    ],
+    deps = ws2_all_crate_deps(
+        package_name = "workspace2/local_vendor/foo",
+        normal = True,
     ),
 )

@@ -39,6 +39,7 @@ crates_repository(
     manifests = [
         "//workspace2:Cargo.toml",
         "//workspace2/bar:Cargo.toml",
+        "//workspace2/local_vendor/foo:Cargo.toml",
     ],
 )
 
